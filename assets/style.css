@@ -1,0 +1,175 @@
+body {
+  background: red;
+}
+
+.section-hotspot .section-hotspot__wrapper {
+  position: relative;
+}
+
+.section-hotspot .section-hotspot__wrapper:before {
+  content: '';
+  width: 74.7%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.section-hotspot .section-hotspot__inner {
+  padding: 50px 30px;
+  width: 55%;
+  background: black;
+  position: relative;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: -webkit-gradient(linear, left top, right top, color-stop(67%, black), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(90deg, black 67%, rgba(0, 0, 0, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
+  -webkit-mask-image: linear-gradient(85deg, black 90%, rgba(0, 0, 0, 0) 100%);
+}
+
+.section-hotspot .section-hotspot__inner > * {
+  padding-right: 20%;
+}
+
+.section-hotspot .image-with-text {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-hotspot .image-with-text * {
+  color: #FFF;
+}
+
+.section-hotspot .image-with-text > * {
+  -webkit-box-flex: 10;
+      -ms-flex: 10 0 50%;
+          flex: 10 0 50%;
+}
+
+.section-hotspot .wrapper-collection {
+  margin: auto;
+}
+
+.section-hotspot .wrapper-collection .image-with-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-hotspot .wrapper-collection .image-with-text > * {
+  -webkit-box-flex: 10;
+      -ms-flex: 10 0 50%;
+          flex: 10 0 50%;
+}
+
+.section-hotspot .wrapper-collection .product-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-hotspot .wrapper-collection .product-list > * {
+  -webkit-box-flex: 10;
+      -ms-flex: 10 0 20%;
+          flex: 10 0 20%;
+}
+
+.section-hotspot .wrapper-collection .product-list .card {
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.section-hotspot .wrapper-collection .product-list .card:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.section-hotspot .wrapper-collection .product-list .card * {
+  color: #FFF;
+}
+
+.section-hotspot .wrapper-collection .product-list .card__information {
+  padding: 10px 0 0 0;
+  width: 100%;
+  min-width: 0px;
+}
+
+.section-hotspot .wrapper-collection .product-list .card__heading {
+  margin: 0;
+}
+
+.section-hotspot .wrapper-collection .product-list .card__heading * {
+  margin-top: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+.section-hotspot .wrapper-collection .product-list .card__inner {
+  border-radius: 5px;
+}
+
+.section-hotspot .wrapper-collection .product-list .card .price {
+  margin: 0;
+}
+
+.section-hotspot .wrapper-collection .product-list .card .price .price__regular,
+.section-hotspot .wrapper-collection .product-list .card .price .price__sale {
+  font-size: 90%;
+  font-weight: bold;
+}
+
+.section-hotspot .hotspot__header {
+  margin: 0 0 15px 0;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.section-hotspot .hotspot__attributes__list {
+  margin: 0 0 5px 0;
+}
+
+.section-hotspot .hotspot__attributes__item {
+  font-size: 75%;
+  text-transform: uppercase;
+  opacity: .8;
+  border-radius: 999px;
+  border: 1px solid #FFF;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 5px 5px 0;
+  display: inline-block;
+}
+/*# sourceMappingURL=style.css.map */

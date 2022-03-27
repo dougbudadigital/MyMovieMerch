@@ -1,0 +1,218 @@
+{% assign brightness = section.settings.color_bg | color_brightness %}
+{% assign alpha = section.settings.color_bg | color_extract: 'alpha' %}
+{% assign collection_hotspot = collections[section.settings.collection_hotspot] %}
+
+{% if section.settings.show_soldout %}
+	{% assign collection_hotspot_products = collections[section.settings.collection_hotspot].products %}
+{% else %}
+	{% assign collection_hotspot_products = collections[section.settings.collection_hotspot].products | where: "available" %}
+{% endif %}
+
+<style type="text/css">
+	{% unless section.settings.alternate_bg_color %}
+		/* .wrapper-collection-{{ section.id }}, */
+		.section__hotspot--{{ section.id }} ,
+		.section__hotspot--{{ section.id }} + .wrapper-collection {
+			background: {{ section.settings.color_bg }};
+		}
+	{% endunless %}
+
+	@media(min-width: 768px) {
+		.section__hotspot--{{ section.id }} .image-with-text__image__inner {
+			height: auto !important;
+			width: 100% !important;
+		}
+
+		.section__hotspot--{{ section.id }} .image-with-text__text {
+			flex-basis: 50%;
+		}
+
+		.section__hotspot--{{ section.id }} .image-with-text__image__inner .rimage-outer-wrapper {
+			background-size: cover;
+		}
+	}
+	.section__hotspot--{{ section.id }}:before{
+		background-image: url("{{ section.settings.image | img_url: '2000x2000' }}");
+	}
+</style>
+
+{% capture image_html %}
+	
+{% endcapture %}
+<div class="section__hotspot--{{ section.id }} section-hotspot__wrapper hotspot">
+	<div class="section-hotspot__inner">
+
+		<div class="image-with-text cf
+			section-id-{{ section.id }}
+			{% if section.settings.alternate_bg_color %}use-alt-bg {% elsif section.settings.color_bg != "rgba(0,0,0,0)" %}{% if brightness < 190 and alpha > 0 %}light-text-section{% else %}dark-text-section{% endif %}{% endif %}
+			" data-section-type="image-with-text">
+		
+			<div class="image-with-text__text">
+				<div class="image-with-text__text__wrap
+					{% if brightness < 190 and alpha > 0 %}inherit-colors{% endif %}
+				">
+					{% if section.settings.subheading != blank %}
+						<div class="feature-subheader">{{ section.settings.subheading | escape }}</div>
+					{% endif %}
+		
+					{% if section.settings.title != blank %}
+						<div class="wrapper-heading">
+							<h2 class="hotspot__header h2">
+								{{ section.settings.title | newline_to_br }}
+							</h2>
+						</div>
+					{% endif %}
+					
+						<div class="hotspot__attributes__list" hotspot-attributes>
+							{% if section.settings.genre != blank %}
+								<span class="hotspot__attributes__item label__item">
+									{{section.settings.genre}}
+								</span>
+							{% endif %}
+						</div>
+					
+		
+					<div class="rte wrapper-content hotspot__description" hotspot-description>{{ section.settings.text }}</div>
+					<div class="button-row">
+						<a class="button button-custom" href="{{ collection_hotspot.url }}">See More</a>
+					</div>
+				</div>
+			</div>
+			{%- comment -%}
+			<div class="image-with-text__image lazyload--placeholder">
+				<div class="image-with-text__image__inner">
+					{% if section.settings.image == blank %}
+						<div class="placeholder-image">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+					{% else %}
+					
+						<div class="rimage-outer-wrapper lazyload fade-in">
+		
+							<div class="rimage-wrapper">
+								<img src="{{ section.settings.image | img_url: '1024x1024' }}" alt="{{ section.settings.image.alt | escape }}" class="rimage__image">
+							</div>
+						</div>			
+					{% endif %}
+				</div>
+			</div>
+			{%- endcomment -%}
+		</div>
+		
+		
+		{%- assign product_class = 'column fifth hover-image' -%}
+		{% if collection_hotspot_products != blank %}
+			<div class="wrapper-collection wrapper-collection-{{ section.id }}">
+				<div class="mob-two-col product-list grid-carousel grid-carousel-{{ section.id }} grid--uniform">
+					{% for product in collection_hotspot_products limit: section.settings.qtd_paginate %}
+						{%- comment -%}
+						{% render 'product-block', product: product, product_class: product_class, i: forloop.index, show_vendor: section.settings.show_vendor, show_button: true %}
+						{%- endcomment -%}
+						{% render 'card-product',
+							card_product: product,
+							media_aspect_ratio: 'square',
+							show_secondary_image: true,
+							show_vendor: false,
+							show_rating: false
+						%}
+					{% endfor %}	
+				</div>
+				<div class="button-row">
+					<a class="button hover-grow" href="{{ shop.url }}/collections/{{ collection_hotspot.handle | handleize }}">Ver todo</a>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+</div>
+
+{% schema %}
+	{
+		"name": "Collection Hot Spot",
+		"tag": "section",
+		"class": "section section-image-with-text section-hotspot",
+		"settings": [
+		{
+			"type": "header",
+			"content": "Collection"
+		},	
+		{
+			"type": "collection",
+			"id": "collection_hotspot",
+			"label": "Select the collection",
+			"info": "Collection from hotspot"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_soldout",
+			"label": "Show soldout products",
+			"default": false
+		},
+		{
+			"type": "header",
+			"content": "Hotspot Content"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Heading",
+			"default": "Image with text"
+		},
+		{
+			"type": "text",
+			"id": "genre",
+			"label": "Genre",
+			"default": "Movie Genre"
+		},
+		{
+			"type": "richtext",
+			"id": "text",
+			"label": "Text",
+			"default": "<p>Use this text to share information about your store with your customers. Describe product, share announcements, or welcome customers to your store.</p>"
+		},
+		{
+			"type": "header",
+			"content": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image",
+			"info": "Recommended 1140x800px"
+		},	
+		{
+			"type": "range",
+			"id": "qtd_paginate",
+			"min": 5,
+			"max": 50,
+			"step": 1,
+			"label": "Products to Show",
+			"default": 12
+		},		
+		{
+			"type": "header",
+			"content": "Hotspot Style"
+		},
+		{
+			"type": "checkbox",
+			"id": "alternate_bg_color",
+			"label": "Use alternate section color",
+			"default": false
+		},
+		{
+			"type": "color",
+			"id": "color_bg",
+			"label": "Background color"
+		}
+    ],
+    "presets": [
+	    {
+			"name": "Collection Hot Spot",
+			"category": "Image",
+			"settings": {}
+		}
+    ]
+  }
+{% endschema %}
