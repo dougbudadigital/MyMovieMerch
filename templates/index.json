@@ -49,6 +49,7 @@
     },
     "rich_text": {
       "type": "rich-text",
+      "disabled": true,
       "blocks": {
         "heading": {
           "type": "heading",
@@ -75,28 +76,68 @@
         "padding_bottom": 0
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "16484246564c22cce3": {
+      "type": "image-with-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "background-1",
-        "show_view_all": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 28,
-        "padding_bottom": 36
+        "collection_hotspot": "superman",
+        "show_soldout": false,
+        "subheading": "Cool perks straight from Krypton",
+        "title": "Man of Steel",
+        "genre": "{{ section.settings.collection_hotspot.metafields.metadata.genre.value }}",
+        "text": "",
+        "image": "shopify:\/\/shop_images\/henry-cavill-superman.jpg",
+        "qtd_paginate": 8,
+        "alternate_bg_color": false,
+        "color_bg": "#022b3f"
+      }
+    },
+    "1648426429f01bcf8b": {
+      "type": "image-with-collection",
+      "settings": {
+        "collection_hotspot": "lord-of-the-rings",
+        "show_soldout": false,
+        "subheading": "",
+        "title": "{{ section.settings.collection_hotspot.title }}",
+        "genre": "{{ section.settings.collection_hotspot.metafields.metadata.genre.value }}",
+        "text": "",
+        "qtd_paginate": 12,
+        "alternate_bg_color": false,
+        "color_bg": "#362311"
+      }
+    },
+    "16484152012351e5e5": {
+      "type": "image-with-collection",
+      "settings": {
+        "collection_hotspot": "spiderman",
+        "show_soldout": false,
+        "subheading": "🕷 Spider Shirts are on Spider-sale!",
+        "title": "The Amazing Spider Man",
+        "genre": "{{ section.settings.collection_hotspot.metafields.metadata.genre.value }}",
+        "text": "",
+        "image": "shopify:\/\/shop_images\/Spider-Man_PS4_Selfie_Photo_Mode_LEGAL.jpg",
+        "qtd_paginate": 12,
+        "alternate_bg_color": false,
+        "color_bg": "#0a2139"
+      }
+    },
+    "featured_collection": {
+      "type": "image-with-collection",
+      "settings": {
+        "collection_hotspot": "batman",
+        "show_soldout": false,
+        "subheading": "🎉 New Bat-Perks available!",
+        "title": "The Batman",
+        "genre": "{{ section.settings.collection_hotspot.metafields.metadata.genre.value }}",
+        "text": "<p>The Bat-Description. Use this text to share information about your store with your customers. Describe product, share announcements, or welcome customers to your store.<\/p>",
+        "image": "shopify:\/\/shop_images\/3ae557f5833ad53e39ddfd9ced730b24.jpg",
+        "qtd_paginate": 10,
+        "alternate_bg_color": false,
+        "color_bg": ""
       }
     },
     "collage": {
       "type": "collage",
+      "disabled": true,
       "blocks": {
         "collection-0": {
           "type": "collection",
@@ -135,6 +176,7 @@
     },
     "video": {
       "type": "video",
+      "disabled": true,
       "settings": {
         "heading": "",
         "heading_size": "h1",
@@ -148,6 +190,7 @@
     },
     "multicolumn": {
       "type": "multicolumn",
+      "disabled": true,
       "blocks": {
         "column1": {
           "type": "column",
@@ -203,6 +246,9 @@
   "order": [
     "image_banner",
     "rich_text",
+    "16484246564c22cce3",
+    "1648426429f01bcf8b",
+    "16484152012351e5e5",
     "featured_collection",
     "collage",
     "video",
