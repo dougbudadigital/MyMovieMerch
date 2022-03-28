@@ -1,3 +1,12 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'template-collection.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
+
 {% assign brightness = section.settings.color_bg | color_brightness %}
 {% assign alpha = section.settings.color_bg | color_extract: 'alpha' %}
 {% assign collection_hotspot = collections[section.settings.collection_hotspot] %}
@@ -11,9 +20,13 @@
 <style type="text/css">
 	{% unless section.settings.alternate_bg_color %}
 		/* .wrapper-collection-{{ section.id }}, */
-		.section__hotspot--{{ section.id }} ,
-		.section__hotspot--{{ section.id }} + .wrapper-collection {
-			background: {{ section.settings.color_bg }};
+		.section__hotspot--{{ section.id }} .section-hotspot__inner{
+			/* background: {{ section.settings.color_bg }}; */
+			background: -moz-linear-gradient(90deg, {{ section.settings.color_bg | default: '#000' }} 67%, rgba(0, 0, 0, 0) 100%);
+			background: -webkit-linear-gradient(90deg, {{ section.settings.color_bg | default: '#000' }} 67%, rgba(0, 0, 0, 0) 100%);
+			background: linear-gradient(90deg, {{ section.settings.color_bg | default: '#000' }} 67%, rgba(0, 0, 0, 0) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
+
 		}
 	{% endunless %}
 
@@ -31,7 +44,7 @@
 			background-size: cover;
 		}
 	}
-	.section__hotspot--{{ section.id }}:before{
+	.section__hotspot--{{ section.id }} .cover{
 		background-image: url("{{ section.settings.image | img_url: '2000x2000' }}");
 	}
 </style>
@@ -39,7 +52,9 @@
 {% capture image_html %}
 	
 {% endcapture %}
-<div class="section__hotspot--{{ section.id }} section-hotspot__wrapper hotspot">
+
+<div class="section__hotspot--{{ section.id }} section-hotspot__wrapper hotspot" data-hotspot-target="{{ section.id }}" data-background="{{ section.settings.image | img_url: '2000x2000' }}">
+	<div class="cover" hotspot-cover></div>
 	<div class="section-hotspot__inner">
 
 		<div class="image-with-text cf
@@ -59,6 +74,7 @@
 						<div class="wrapper-heading">
 							<h2 class="hotspot__header h2">
 								{{ section.settings.title | newline_to_br }}
+								<small hotspot-ratings></small>
 							</h2>
 						</div>
 					{% endif %}
@@ -73,8 +89,11 @@
 					
 		
 					<div class="rte wrapper-content hotspot__description" hotspot-description>{{ section.settings.text }}</div>
+					
 					<div class="button-row">
-						<a class="button button-custom" href="{{ collection_hotspot.url }}">See More</a>
+						<h3>
+							Check the last merchs from {{ section.settings.title | newline_to_br }}
+						</h3>
 					</div>
 				</div>
 			</div>
@@ -115,13 +134,25 @@
 						%}
 					{% endfor %}	
 				</div>
-				<div class="button-row">
-					<a class="button hover-grow" href="{{ shop.url }}/collections/{{ collection_hotspot.handle | handleize }}">Ver todo</a>
-				</div>
 			</div>
 		{% endif %}
+		<div class="hotspot__cta">
+			<a class="hotspot__button" href="{{ shop.url }}/collections/{{ collection_hotspot.handle | handleize }}">
+				See all products
+			</a>
+			<a class="hotspot__button hotspot__button--trailer" hotspot-trailer></a>
+		</div>
 	</div>
 </div>
+
+
+<script>
+	var HotspotList = HotspotList || []
+	HotspotList.push({
+		title: '{{section.settings.title}}',
+		target: document.querySelector('[data-hotspot-target="{{ section.id }}"')
+	})
+</script>
 
 {% schema %}
 	{

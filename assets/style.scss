@@ -11,7 +11,7 @@ $section__hotspot__image--width: (100% - $section__hotspot--width) * 1.66;
 .section-hotspot {
     .section-hotspot__wrapper {
         position: relative;
-        &:before {
+        .cover {
             content: '';
             width: $section__hotspot__image--width;
             
@@ -34,11 +34,7 @@ $section__hotspot__image--width: (100% - $section__hotspot--width) * 1.66;
         background: rgb(0, 0, 0);
         position: relative;
         backdrop-filter: blur(5px);
-        background: -moz-linear-gradient(90deg, rgba(0, 0, 0, 1) $section__hotspot__gradient-offset--width, rgba(0, 0, 0, 0) 100%);
-        background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 1) $section__hotspot__gradient-offset--width, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(90deg, rgba(0, 0, 0, 1) $section__hotspot__gradient-offset--width, rgba(0, 0, 0, 0) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
-
+        
         -webkit-mask-image: linear-gradient(85deg,black 90%,rgba(0,0,0,0) 100%);
         &>*{
             padding-right: 20%;
@@ -81,7 +77,9 @@ $section__hotspot__image--width: (100% - $section__hotspot--width) * 1.66;
             justify-content: center;
 
             &>* {
-                flex: 10 0 20%;
+                flex: 10 0 25%;
+                max-width: 25%;
+                width: 100%;
             }
             .card{
                 padding: 10px;
@@ -92,6 +90,9 @@ $section__hotspot__image--width: (100% - $section__hotspot--width) * 1.66;
                 }
                 *{
                     color: #FFF;
+                }
+                &__media{
+                    position: relative;
                 }
                 &__information{
                     padding: 10px 0 0 0;
@@ -146,6 +147,34 @@ $section__hotspot__image--width: (100% - $section__hotspot--width) * 1.66;
                 background: rgba(255,255,255,.25);
                 margin: 0 5px 5px 0;
                 display: inline-block;
+            }
+        }
+        &__description{
+            margin: 0 0 15px 0;
+        }
+        &__button{
+            font-size: 100%;
+            text-transform: uppercase;
+            opacity: .8;
+            border-radius: 5px;
+            color: #FFF;
+            border: 1px solid #FFF;
+            padding: 5px 20px;
+            background: rgba(255,255,255,.25);
+            margin: 0 5px 5px 0;
+            display: inline-block;
+            text-decoration: none;
+            &:empty{
+                display: none;
+            }
+            &--trailer{
+                font-size: 105%;
+                padding: 5px 20px 5px 45px;
+                padding-left: 45px;
+                background-image: url('https://img.icons8.com/ios-glyphs/30/FFFFFF/play--v1.png');
+                background-repeat: no-repeat;
+                background-position: left 20px center;
+                background-size: auto 15px;
             }
         }
     }

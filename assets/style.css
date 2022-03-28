@@ -6,7 +6,7 @@ body {
   position: relative;
 }
 
-.section-hotspot .section-hotspot__wrapper:before {
+.section-hotspot .section-hotspot__wrapper .cover {
   content: '';
   width: 74.7%;
   background-repeat: no-repeat;
@@ -27,9 +27,6 @@ body {
   position: relative;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
-  background: -webkit-gradient(linear, left top, right top, color-stop(67%, black), to(rgba(0, 0, 0, 0)));
-  background: linear-gradient(90deg, black 67%, rgba(0, 0, 0, 0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
   -webkit-mask-image: linear-gradient(85deg, black 90%, rgba(0, 0, 0, 0) 100%);
 }
 
@@ -100,8 +97,10 @@ body {
 
 .section-hotspot .wrapper-collection .product-list > * {
   -webkit-box-flex: 10;
-      -ms-flex: 10 0 20%;
-          flex: 10 0 20%;
+      -ms-flex: 10 0 25%;
+          flex: 10 0 25%;
+  max-width: 25%;
+  width: 100%;
 }
 
 .section-hotspot .wrapper-collection .product-list .card {
@@ -117,6 +116,10 @@ body {
 
 .section-hotspot .wrapper-collection .product-list .card * {
   color: #FFF;
+}
+
+.section-hotspot .wrapper-collection .product-list .card__media {
+  position: relative;
 }
 
 .section-hotspot .wrapper-collection .product-list .card__information {
@@ -171,5 +174,37 @@ body {
   background: rgba(255, 255, 255, 0.25);
   margin: 0 5px 5px 0;
   display: inline-block;
+}
+
+.section-hotspot .hotspot__description {
+  margin: 0 0 15px 0;
+}
+
+.section-hotspot .hotspot__button {
+  font-size: 100%;
+  text-transform: uppercase;
+  opacity: .8;
+  border-radius: 5px;
+  color: #FFF;
+  border: 1px solid #FFF;
+  padding: 5px 20px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 5px 5px 0;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.section-hotspot .hotspot__button:empty {
+  display: none;
+}
+
+.section-hotspot .hotspot__button--trailer {
+  font-size: 105%;
+  padding: 5px 20px 5px 45px;
+  padding-left: 45px;
+  background-image: url("https://img.icons8.com/ios-glyphs/30/FFFFFF/play--v1.png");
+  background-repeat: no-repeat;
+  background-position: left 20px center;
+  background-size: auto 15px;
 }
 /*# sourceMappingURL=style.css.map */
